@@ -67,7 +67,10 @@
               "buildTarget": "ng-solitaire-engine:build:development"
             }
           },
-          "defaultConfiguration": "development"
+          "defaultConfiguration": "development",
+          "options": {
+            "allowedHosts": ["4200-johnisahams-solitaireen-pql30hchnhj.ws-us120.gitpod.io"]
+          }
         },
         "extract-i18n": {
           "builder": "@angular/build:extract-i18n"
