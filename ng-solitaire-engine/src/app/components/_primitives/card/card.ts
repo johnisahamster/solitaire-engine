@@ -50,10 +50,10 @@ export class Card {
 }
 
 export enum CardSuit {
-  Diamonds,
-  Spades,
-  Hearts,
-  Clubs
+  Diamonds = "Diamonds",
+  Spades = "Spades",
+  Hearts = "Hearts",
+  Clubs = "Clubs"
 };
 export enum CardNumber {
   ACE = 1,
