@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, Inject, InjectionToken } from '@angular/core';
+
+export const FACE_DOWN_TOKEN = new InjectionToken<boolean>('FACE_DOWN_TOKEN');
 
 @Component({
   selector: 'app-card',
@@ -9,12 +11,16 @@ import { Component } from '@angular/core';
 export class Card {
   private suit : CardSuit;
   private number : CardNumber;
-  private faceDown : boolean;
+  @Inject(FACE_DOWN_TOKEN) private faceDown : boolean;
 
-  constructor(suit : CardSuit, number : CardNumber, isFaceDown : boolean = true, ) {
+  constructor(
+    suit : CardSuit, 
+    number : CardNumber, 
+    @Inject(FACE_DOWN_TOKEN) faceDown : boolean = true) {
+    
     this.suit = suit;
     this.number = number;
-    this.faceDown = isFaceDown;
+    this.faceDown = faceDown;
   }
 
   //getters
