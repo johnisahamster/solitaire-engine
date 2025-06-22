@@ -69,7 +69,10 @@
           },
           "defaultConfiguration": "development",
           "options": {
-            "allowedHosts": ["4200-johnisahams-solitaireen-pql30hchnhj.ws-us120.gitpod.io"]
+            "allowedHosts": [
+              "4200-johnisahams-solitaireen-iueue12fz2i.ws-us120.gitpod.io/",
+              "localhost"
+            ]
           }
         },
         "extract-i18n": {
