@@ -1,26 +1,22 @@
-import { Component, Inject, InjectionToken } from '@angular/core';
-
-export const FACE_DOWN_TOKEN = new InjectionToken<boolean>('FACE_DOWN_TOKEN');
+import { ReturnStatement } from '@angular/compiler';
+import { Component, ElementRef, Input, ViewChild } from '@angular/core';
+import { CdkDrag } from '@angular/cdk/drag-drop';
 
 @Component({
-  selector: 'app-card',
-  imports: [],
+  selector: 'se-card',
+  imports: [CdkDrag],
   templateUrl: './card.html',
   styleUrl: './card.scss'
 })
 export class Card {
-  private suit : CardSuit;
-  private number : CardNumber;
-  @Inject(FACE_DOWN_TOKEN) private faceDown : boolean;
+  @Input() suit! : CardSuit;
+  @Input() number! : CardNumber;
+  @Input() faceDown : boolean = true;
 
-  constructor(
-    suit : CardSuit, 
-    number : CardNumber, 
-    @Inject(FACE_DOWN_TOKEN) faceDown : boolean = true) {
-    
-    this.suit = suit;
-    this.number = number;
-    this.faceDown = faceDown;
+  @ViewChild('cardcanvas') cardcanvas!: ElementRef<HTMLCanvasElement>;
+
+  constructor() {
+
   }
 
   //getters
@@ -52,7 +48,6 @@ export class Card {
   public flipFaceUp() {
     this.faceDown = false;
   }
-
 }
 
 export enum CardSuit {

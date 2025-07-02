@@ -21,7 +21,7 @@ export class Deck {
 
     for (let s = 0; s < 4; s++) {
       for (let n = 1; n <= 13; n++) {
-        new_cards.push(new Card(CardSuit[suits[s]], n));
+        //new_cards.push(new Card(CardSuit[suits[s]], n));
       }
     }
 
