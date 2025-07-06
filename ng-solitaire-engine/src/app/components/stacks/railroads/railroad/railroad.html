@@ -1,1 +1,5 @@
-<p>railroad works!</p>
+<div #railroad cdkDropList cdkDropListOrientation="mixed" class="railroad" (cdkDropListDropped)="drop($event)" [cdkDropListData]="cards">
+    @for (card of cards; track card) {
+        <se-card cdkDrag cdkDragBoundary=".gameboard" [card]="card"></se-card>
+    }
+</div>

@@ -17,3 +17,15 @@ html {
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.gameboard {
+  max-width: 95%;
+  height: 95%;
+  margin: 2.5%;
+  border: dotted #ccc 2px;
+}
+
+se-card {
+  width: 60px;
+  height: 90px;
+}

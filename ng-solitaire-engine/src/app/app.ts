@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { Card } from '../app/components/_primitives/card/card';
+import { Gameboard } from './gameboard/gameboard';
 
 @Component({
   selector: 'app-root',
   imports: [
     RouterOutlet,
-    Card
+    Gameboard
   ],
   templateUrl: './app.html',
   styleUrl: './app.scss'

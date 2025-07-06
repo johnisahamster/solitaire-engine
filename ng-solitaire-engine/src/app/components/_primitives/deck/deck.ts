@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import { Card, CardNumber, CardSuit } from '../card/card';
-import fastShuffle, { shuffle } from 'fast-shuffle';
+import { DeckModel } from '../../../models/deck/deck-model';
 
 @Component({
   selector: 'app-deck',
@@ -9,42 +8,11 @@ import fastShuffle, { shuffle } from 'fast-shuffle';
   styleUrl: './deck.scss'
 })
 export class Deck {
-  private cards : Array<Card>;
 
-  constructor(cards : Array<Card>) {
-    this.cards = cards;
-  }
+  private deck: DeckModel = new DeckModel([]);
 
-  public static newDeck(isShuffled : boolean = false) : Deck {
-    var new_cards = new Array<Card>();
-    var suits = Object.values(CardSuit);
-
-    for (let s = 0; s < 4; s++) {
-      for (let n = 1; n <= 13; n++) {
-        //new_cards.push(new Card(CardSuit[suits[s]], n));
-      }
-    }
-
-    var newDeck = new Deck(new_cards);
-    return (isShuffled) ? newDeck : newDeck.shuffleDeck()
-  }
-  public shuffleDeck() : Deck {
-    this.cards = shuffle(this.cards);
-    return this;
+  constructor() {
   }
 
-  public pop() : Card | undefined {
-    return this.cards.pop();
-  }
-  public split(N: number) : Array<Card> | undefined {
-    const original = this.cards;
-    this.cards = original.splice(0, N);
-    return original.splice(N);
-  }
-  public push(card : Card) {
-    this.cards.push(card);
-  }
-  public pushMany(cards : Array<Card>) {
-    this.cards.push(...cards);
-  }
+
 }
