@@ -1,9 +1,10 @@
 export class CardModel {
   
   constructor(
-    private suit : CardSuit = this.getSuit(),
-    private number : CardNumber = this.getNumber(),
-    private faceDown : boolean = true) {
+    private faceDown : boolean = true,
+    private suit : CardSuit = this.newSuit(),
+    private number : CardNumber = this.newNumber()
+  ) {
   }
 
   //getters
@@ -34,6 +35,15 @@ export class CardModel {
   }
   public flipFaceUp() {
     this.faceDown = false;
+  }
+
+  private newSuit() : CardSuit {
+    var suits = Object.keys(CardSuit);
+    const enumKey = suits[Math.floor(Math.random() * suits.length)];
+    return enumKey as CardSuit;
+  }
+  private newNumber() : CardNumber {
+    return Math.floor(Math.random() * 13) + 1;
   }
 }
 
