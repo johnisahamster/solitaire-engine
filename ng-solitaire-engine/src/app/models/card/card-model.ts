@@ -3,7 +3,7 @@ export class CardModel {
   constructor(
     private faceDown : boolean = true,
     private suit : CardSuit = this.newSuit(),
-    private number : CardNumber = this.newNumber()
+    private number : CardNumber = this.newNumber(),
   ) {
   }
 
@@ -27,14 +27,17 @@ export class CardModel {
   }
 
   //setters
-  public flip() {
+  public flip() : CardModel {
     this.faceDown = !this.faceDown;
+    return this;
   }
-  public flipFaceDown() {
+  public flipFaceDown() : CardModel {
     this.faceDown = true;
+    return this;
   }
-  public flipFaceUp() {
+  public flipFaceUp() : CardModel {
     this.faceDown = false;
+    return this;
   }
 
   private newSuit() : CardSuit {

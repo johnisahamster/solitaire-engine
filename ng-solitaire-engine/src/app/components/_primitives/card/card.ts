@@ -9,7 +9,12 @@ import { CardModel, CardSuit } from '../../../models/card/card-model';
   styleUrl: './card.scss'
 })
 export class Card implements OnInit, AfterViewInit{
-  @Input() card: CardModel = new CardModel();
+  
+  private model: CardModel = new CardModel();
+
+  @Input() set cardmodel(value: CardModel) {
+    this.model = value;
+  }
 
   @ViewChild('cardcanvas') cardcanvas!: ElementRef<HTMLCanvasElement>;
   private ctx!: CanvasRenderingContext2D;
@@ -18,7 +23,7 @@ export class Card implements OnInit, AfterViewInit{
   }
 
   ngOnInit(): void {
-    console.log(this.card);
+    console.log(this.model);
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -31,7 +36,7 @@ export class Card implements OnInit, AfterViewInit{
   }
 
   private drawCanvas() {
-    if (this.card.isFaceDown()) {
+    if (this.model.isFaceDown()) {
       var grd = this.ctx.createLinearGradient(0, 0, 100, 100);
       grd.addColorStop(0, "#550000");
       grd.addColorStop(1, "#200000");
@@ -46,15 +51,15 @@ export class Card implements OnInit, AfterViewInit{
       this.ctx.stroke();
       this.ctx.font = "20px Arial";
       this.ctx.fillStyle = "#000000";
-      this.ctx.fillText(this.card.getNumber().toString(), 5, 20);
+      this.ctx.fillText(this.model.getNumber().toString(), 5, 20);
     }
     
   }
 
   private getColorByCardValue() : string {
     try {
-      console.log(this.card.getSuit());
-      switch (this.card.getSuit()) {
+      console.log(this.model.getSuit());
+      switch (this.model.getSuit()) {
         case CardSuit.Diamonds:
           return '#cc7700';
         case CardSuit.Spades:

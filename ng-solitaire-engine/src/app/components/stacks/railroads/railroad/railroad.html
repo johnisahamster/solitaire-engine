@@ -1,5 +1,9 @@
-<div #railroad cdkDropList cdkDropListOrientation="mixed" class="railroad" (cdkDropListDropped)="drop($event)" [cdkDropListData]="cards">
+<div #railroad cdkDropList cdkDropListOrientation="vertical" class="railroad" (cdkDropListDropped)="drop($event)" [cdkDropListData]="cards" [cdkDropListEnterPredicate]="enterPredicate" [cdkDropListSortPredicate]="sortPredicate">
     @for (card of cards; track card) {
-        <se-card cdkDrag cdkDragBoundary=".gameboard" [card]="card"></se-card>
+        @if ($index == cards.length - 1) {
+            <se-card cdkDrag cdkDragBoundary=".gameboard" [cardmodel]="card.flipFaceUp()" [cdkDragDisabled]="false"></se-card>
+        } @else {
+            <se-card cdkDrag cdkDragBoundary=".gameboard" [cardmodel]="card" [cdkDragDisabled]="true"></se-card>
+        }
     }
 </div>
