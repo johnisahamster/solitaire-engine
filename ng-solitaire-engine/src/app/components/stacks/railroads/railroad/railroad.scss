@@ -1,5 +1,5 @@
 .railroad {
-    background-color: #eeeeee;
+    //background-color: #eeeeee;
     height: inherit;
     width: fit-content;
     margin: 5%;
@@ -26,6 +26,7 @@
 }
 
 .cdk-drag {
+    border-radius: 5px;
     box-sizing: border-box;
     align-items: center;
     justify-content: center;
