@@ -1,10 +1,11 @@
 .railroad {
     //background-color: #eeeeee;
-    height: inherit;
+    height: 90%;
     width: fit-content;
     margin: 5%;
     display: flex;
     flex-direction: column;
+    min-width: 60px; //prevents collapse when 0 cards
 }
 .cdk-drag-placeholder {
     opacity: 0;
