@@ -1,11 +1,10 @@
 .railroad {
     background-color: #eeeeee;
-    height: fit-content;
+    height: inherit;
     width: fit-content;
     margin: 5%;
     display: flex;
-    align-content: center;
-    max-height: 50px;
+    flex-direction: column;
 }
 .cdk-drag-placeholder {
     opacity: 0;
@@ -27,15 +26,10 @@
 }
 
 .cdk-drag {
-    display: flex;
-    flex-direction: row;
     box-sizing: border-box;
     align-items: center;
     justify-content: center;
     cursor: grab;
-}
-
-se-card {
-  display: flex;
-  flex-direction: row;
+    overflow: clip;
+    margin-bottom: -70%;
 }
