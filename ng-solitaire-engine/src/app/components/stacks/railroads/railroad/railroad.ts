@@ -1,4 +1,4 @@
-import { ApplicationRef, Component } from '@angular/core';
+import { ApplicationRef, Component, Input } from '@angular/core';
 import { Card } from '../../../_primitives/card/card';
 import { CdkDrag, CdkDragDrop, CdkDropList, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { CardModel } from '../../../../models/card/card-model';
@@ -16,11 +16,7 @@ import { TargetMenuAim } from '@angular/cdk/menu';
 })
 export class Railroad {
 
-  public cards: CardModel[] = [
-    new CardModel(true),
-    new CardModel(true),
-    new CardModel(),
-  ];
+  @Input() public cards: CardModel[] = [];
 
   constructor (
     private ref: ApplicationRef

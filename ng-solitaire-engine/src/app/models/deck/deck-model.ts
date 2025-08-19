@@ -1,5 +1,6 @@
-import { shuffle } from "fast-shuffle";
+import { createShuffle } from "fast-shuffle";
 import { CardModel, CardSuit } from "../card/card-model";
+import { LOCALE_ID } from "@angular/core";
 
 
 export class DeckModel {
@@ -15,15 +16,17 @@ export class DeckModel {
 
     for (let s = 0; s < 4; s++) {
       for (let n = 1; n <= 13; n++) {
-        //new_cards.push(new CardModel(CardSuit[suits[s]], n));
+        new_cards.push(new CardModel(true, suits[s], n));
       }
     }
 
     var newDeck = new DeckModel(new_cards);
-    return (isShuffled) ? newDeck : newDeck.shuffleDeck()
+    return (isShuffled) ? newDeck.shuffleDeck() : newDeck;
   }
   public shuffleDeck() : DeckModel {
-    this.cards = shuffle(this.cards);
+    var seed = Date.now();
+    var fastShuffle = createShuffle(seed);
+    this.cards = fastShuffle(this.cards);
     return this;
   }
 
