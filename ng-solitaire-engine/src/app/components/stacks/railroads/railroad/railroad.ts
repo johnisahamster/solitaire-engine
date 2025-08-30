@@ -1,6 +1,6 @@
 import { ApplicationRef, Component, Input } from '@angular/core';
 import { Card } from '../../../_primitives/card/card';
-import { CdkDrag, CdkDragDrop, CdkDropList, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
+import { CdkDrag, CdkDragDrop, CdkDragPreview, CdkDropList, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { CardModel } from '../../../../models/card/card-model';
 import { TargetMenuAim } from '@angular/cdk/menu';
 
@@ -10,6 +10,7 @@ import { TargetMenuAim } from '@angular/cdk/menu';
     Card,
     CdkDropList,
     CdkDrag,
+    CdkDragPreview,
   ],
   templateUrl: './railroad.html',
   styleUrl: './railroad.scss'
@@ -24,7 +25,13 @@ export class Railroad {
 
   public drop(event: CdkDragDrop<CardModel[]>) {
     console.log("dropped");
-    transferArrayItem(event.previousContainer.data, event.container.data, event.previousIndex, event.currentIndex);
+    const transferred_cards = event.item.data as CardModel[];
+
+    // Remove dragged cards from source
+    event.previousContainer.data.splice(event.previousIndex, transferred_cards.length);
+    // Insert into target stack
+    event.container.data.splice(event.currentIndex, 0, ...transferred_cards);
+
     this.ref.tick();
   }
 

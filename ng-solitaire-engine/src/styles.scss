@@ -25,11 +25,6 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   border: dotted #ccc 2px;
 }
 
-se-card {
-  width: 60px;
-  height: 90px;
-  overflow: hidden;
-}
-se-card:last-child {
-  overflow: visible;
+[popover].cdk-drag-preview {
+  overflow: visible !important;
 }

@@ -35,3 +35,16 @@
     overflow: clip;
     margin-bottom: -70%;
 }
+
+.drag-preview {
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+    min-width: 60px; //prevents collapse when 0 cards
+    min-height: 90px;
+}
+.drag-preview > se-card {
+  box-sizing: content-box;
+  overflow: visible;
+  margin-bottom: -70%;
+}
