@@ -25,11 +25,6 @@ export class Railroad {
   public drop(event: CdkDragDrop<CardModel[]>) {
     console.log("dropped");
     transferArrayItem(event.previousContainer.data, event.container.data, event.previousIndex, event.currentIndex);
-    // if (event.previousContainer != event.container) {
-    //   if (event.currentIndex == event.container.data.length) {
-    //     transferArrayItem(event.previousContainer.data, event.container.data, event.previousIndex, event.currentIndex);
-    //   }
-    // }
     this.ref.tick();
   }
 
@@ -37,10 +32,7 @@ export class Railroad {
     const targetList = drop.data as CardModel[];
     const targetElement = drop.element.nativeElement;
 
-    // Allow drop if hovering over last position
-    // const dropRect = targetElement.getBoundingClientRect();
-    // const dragPos = drag._dragRef.getFreeDragPosition();
-    // return dragPos.x >= dropRect.right - 50;
+    //logic for whether a card can be placed here will be implemented later
 
     return true;
   }
@@ -53,6 +45,5 @@ export class Railroad {
     } else {
       return false;
     }
-    // return true;
   }
 }

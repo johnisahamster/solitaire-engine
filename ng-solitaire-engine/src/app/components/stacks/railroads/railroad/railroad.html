@@ -1,9 +1,29 @@
 <div #railroad cdkDropList cdkDropListOrientation="vertical" class="railroad" (cdkDropListDropped)="drop($event)" [cdkDropListData]="cards" [cdkDropListEnterPredicate]="enterPredicate" [cdkDropListSortPredicate]="sortPredicate">
-    @for (card of cards; track card) {
+    <!-- @for (card of cards; track card) {
         @if ($index == cards.length - 1) {
             <se-card cdkDrag cdkDragBoundary=".gameboard" [cardmodel]="card.flipFaceUp()" [cdkDragDisabled]="false"></se-card>
         } @else {
             <se-card cdkDrag cdkDragBoundary=".gameboard" [cardmodel]="card" [cdkDragDisabled]="true"></se-card>
         }
+    } -->
+    @for(card of cards; track card; let i = $index, l = $last) {
+        @if(l) {
+            <se-card
+                cdkDrag
+                cdkDragBoundary=".gameboard" 
+                [cardmodel]="card.flipFaceUp()"
+                [cdkDragData]="cards.slice(i)"
+                [cdkDragDisabled]="card.isFaceDown()">
+                </se-card>
+        } @else {
+            <se-card
+                cdkDrag
+                cdkDragBoundary=".gameboard" 
+                [cardmodel]="card"
+                [cdkDragData]="cards.slice(i)"
+                [cdkDragDisabled]="card.isFaceDown()">
+                </se-card>
+        }
+        
     }
 </div>
