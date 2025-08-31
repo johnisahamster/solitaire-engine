@@ -8,11 +8,11 @@ export class CardModel {
   }
 
   //getters
-  public getSuit() { return this.suit; }
-  public getNumber() { return this.number; }
-  public isFaceDown() { return this.faceDown; }
+  public getSuit() : CardSuit { return this.suit; }
+  public getNumber() : CardNumber { return this.number; }
+  public isFaceDown() : boolean { return this.faceDown; }
   
-  public getValue(aceHigh = false, royalsTen = false) {
+  public getValue(aceHigh = false, royalsTen = false) : number {
     var n = this.number.valueOf();
 
     if (aceHigh && royalsTen && n == 1) {

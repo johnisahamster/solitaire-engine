@@ -34,14 +34,19 @@ export class DeckModel {
     return this.cards.pop();
   }
   public split(N: number) : Array<CardModel> | undefined {
-    const original = this.cards;
+    const original = this.cards; //TODO: IMPLEMENT DEEP CLONING
     this.cards = original.splice(0, N);
     return original.splice(N);
   }
-  public push(card : CardModel) {
+  public push(card : CardModel) : DeckModel {
     this.cards.push(card);
+    return this;
   }
-  public pushMany(cards : Array<CardModel>) {
+  public pushMany(cards : Array<CardModel>) : DeckModel {
     this.cards.push(...cards);
+    return this;
+  }
+  public count() : number {
+    return this.cards.length;
   }
 }
