@@ -1,0 +1,12 @@
+{
+  // These tasks will run in order when initializing your CodeSandbox project.
+  "setupTasks": [
+    {
+      "command": "cd ./ng-solitaire-engine; npm install -g @angular/cli; npm install;",
+      "name": "init node"
+    }
+  ],
+
+  // These tasks can be run from CodeSandbox. Running one will open a log in the app.
+  "tasks": {}
+}
