@@ -4,6 +4,10 @@
     {
       "command": "cd ./ng-solitaire-engine; npm install -g @angular/cli; npm install;",
       "name": "init node"
+    },
+    {
+      "command": "cd ./ng-solitaire-engine; nvm install v22.12;",
+      "name": "using node v22.x"
     }
   ],
 
