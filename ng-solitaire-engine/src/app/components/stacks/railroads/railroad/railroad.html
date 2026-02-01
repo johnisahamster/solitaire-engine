@@ -1,20 +1,35 @@
-<div #railroad cdkDropList cdkDropListOrientation="vertical" class="railroad" (cdkDropListDropped)="drop($event)" [cdkDropListData]="cards" [cdkDropListEnterPredicate]="enterPredicate" [cdkDropListSortPredicate]="sortPredicate">
-    @for(card of cards; track card; let i = $index, l = $last) {
-        <div cdkDrag cdkDragBoundary=".gameboard" 
-            [cdkDragData]="cards.slice(i)"
-            [cdkDragDisabled]="card.isFaceDown()">
-            @if(l) {
-                <se-card [cardmodel]="card.flipFaceUp()"/>
-            } @else {
-                <se-card [cardmodel]="card"/>
-            }
-            <ng-template cdkDragPreview>
-                <div class="drag-preview">
-                    @for(c of cards.slice(i); track c) {
-                        <se-card [cardmodel]="c"></se-card>
-                    }
-                </div>
-            </ng-template>
-        </div>
+<div
+  #railroad
+  cdkDropList
+  cdkDropListOrientation="vertical"
+  class="railroad"
+  (cdkDropListDropped)="drop($event)"
+  [cdkDropListData]="cards"
+  [cdkDropListEnterPredicate]="enterPredicate"
+  [cdkDropListSortPredicate]="sortPredicate"
+>
+  @for(card of cards; track card; let i = $index, l = $last) {
+  <div
+    cdkDrag
+    cdkDragBoundary=".gameboard"
+    [cdkDragData]="cards.slice(i)"
+    [cdkDragDisabled]="card.isFaceDown()"
+    [class.hidden]="card.isMoving()"
+    (cdkDragStarted)="startDrag($event, i)"
+    (cdkDragEnded)="endDrag($event, i)"
+  >
+    @if(l) {
+    <se-card [cardmodel]="card.flipFaceUp()" />
+    } @else {
+    <se-card [cardmodel]="card" />
     }
+    <ng-template cdkDragPreview>
+      <div class="drag-preview">
+        @for(c of cards.slice(i); track c) {
+        <se-card [cardmodel]="c"></se-card>
+        }
+      </div>
+    </ng-template>
+  </div>
+  }
 </div>
