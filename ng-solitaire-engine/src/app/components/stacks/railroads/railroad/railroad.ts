@@ -47,10 +47,23 @@ export class Railroad {
   public enterPredicate(drag: CdkDrag, drop: CdkDropList): boolean {
     const targetList = drop.data as CardModel[];
     const targetElement = drop.element.nativeElement;
+    const draggedCards = drag.data as CardModel[];
 
     //logic for whether a card can be placed here will be implemented later
+    return Railroad.dropPredicate(targetList, targetElement, draggedCards);
+  }
 
-    return true;
+  public static dropPredicate(
+    targetList: CardModel[],
+    targetElement: HTMLElement,
+    draggedCards: CardModel[]
+  ): boolean {
+    const topTarget = targetList[targetList.length - 1];
+    const bottomDragged = draggedCards[0];
+    return (
+      topTarget.getColour() != bottomDragged.getColour() &&
+      topTarget.getNumber() == bottomDragged.getNumber() + 1
+    );
   }
 
   public sortPredicate(

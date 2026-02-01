@@ -11,6 +11,11 @@ export class CardModel {
   public getSuit(): CardSuit {
     return this.suit;
   }
+  public getColour(): Colour {
+    return this.suit == 'Hearts' || this.suit == 'Diamonds'
+      ? Colour.Red
+      : Colour.Black;
+  }
   public getNumber(): CardNumber {
     return this.number;
   }
@@ -67,6 +72,10 @@ export class CardModel {
   }
 }
 
+export enum Colour {
+  Red = 0,
+  Black = 1,
+}
 export enum CardSuit {
   Diamonds = 'Diamonds',
   Spades = 'Spades',
