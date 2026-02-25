@@ -2,7 +2,9 @@ import {
   ApplicationRef,
   ChangeDetectorRef,
   Component,
+  Inject,
   Input,
+  Optional,
 } from '@angular/core';
 import { Card } from '../../../_primitives/card/card';
 import {
@@ -17,6 +19,10 @@ import {
 } from '@angular/cdk/drag-drop';
 import { CardModel } from '../../../../models/card/card-model';
 import { TargetMenuAim } from '@angular/cdk/menu';
+import {
+  RAILROAD_PREDICATE_TOKEN,
+  RailroadPredicate,
+} from '../../../../directives/railroad-predicates/railroad-predicate-token';
 
 @Component({
   selector: 'se-railroad',
@@ -27,7 +33,15 @@ import { TargetMenuAim } from '@angular/cdk/menu';
 export class Railroad {
   @Input() public cards: CardModel[] = [];
 
-  constructor(private ref: ApplicationRef, private cdr: ChangeDetectorRef) {}
+  constructor(
+    private ref: ApplicationRef,
+    private cdr: ChangeDetectorRef,
+    @Optional()
+    @Inject(RAILROAD_PREDICATE_TOKEN)
+    private predicates: RailroadPredicate[] = []
+  ) {
+    console.log(predicates);
+  }
 
   public drop(event: CdkDragDrop<CardModel[]>) {
     console.log('dropped');
@@ -49,20 +63,15 @@ export class Railroad {
     const targetElement = drop.element.nativeElement;
     const draggedCards = drag.data as CardModel[];
 
-    //logic for whether a card can be placed here will be implemented later
-    return Railroad.dropPredicate(targetList, targetElement, draggedCards);
-  }
+    console.log('enter predicate:', this.predicates);
 
-  public static dropPredicate(
-    targetList: CardModel[],
-    targetElement: HTMLElement,
-    draggedCards: CardModel[]
-  ): boolean {
-    const topTarget = targetList[targetList.length - 1];
-    const bottomDragged = draggedCards[0];
-    return (
-      topTarget.getColour() != bottomDragged.getColour() &&
-      topTarget.getNumber() == bottomDragged.getNumber() + 1
+    if (this.predicates.length <= 0) {
+      return true;
+    }
+
+    //logic for whether a card can be placed here - check all predicates
+    return this.predicates.every((fn) =>
+      fn(targetList, targetElement, draggedCards)
     );
   }
 
