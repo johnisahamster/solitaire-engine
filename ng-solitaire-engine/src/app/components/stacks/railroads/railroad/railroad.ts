@@ -40,11 +40,11 @@ export class Railroad {
     @Inject(RAILROAD_PREDICATE_TOKEN)
     private predicates: RailroadPredicate[] = []
   ) {
-    console.log(predicates);
+    this.enterPredicate = this.enterPredicate.bind(this);
   }
 
   public drop(event: CdkDragDrop<CardModel[]>) {
-    console.log('dropped');
+    // console.log('dropped');
     const transferred_cards = event.item.data as CardModel[];
 
     // Remove dragged cards from source
@@ -63,7 +63,7 @@ export class Railroad {
     const targetElement = drop.element.nativeElement;
     const draggedCards = drag.data as CardModel[];
 
-    console.log('enter predicate:', this.predicates);
+    // console.log('enter predicate:', this.predicates);
 
     if (this.predicates.length <= 0) {
       return true;
