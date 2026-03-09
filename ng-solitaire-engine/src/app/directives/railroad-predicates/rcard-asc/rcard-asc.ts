@@ -29,9 +29,6 @@ export class RCardAsc {
   ): boolean {
     const topTarget = targetList[targetList.length - 1];
     const bottomDragged = draggedCards[0];
-    return (
-      topTarget.getColour() != bottomDragged.getColour() &&
-      topTarget.getNumber() == bottomDragged.getNumber() + 1
-    );
+    return topTarget.getNumber() == bottomDragged.getNumber() + 1;
   }
 }
