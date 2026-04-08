@@ -4,27 +4,17 @@ import { Railroad } from '../components/stacks/railroads/railroad/railroad';
 import { CdkDropListGroup } from '@angular/cdk/drag-drop';
 import { CardModel } from '../models/card/card-model';
 import { DeckModel } from '../models/deck/deck-model';
+import { RCardAsc } from '../directives/railroad-predicates/rcard-asc/rcard-asc';
+import { RAltColour } from '../directives/railroad-predicates/ralt-colour/ralt-colour';
 
 @Component({
   selector: 'se-gameboard',
-  imports: [
-    Railroad,
-    Card,
-    CdkDropListGroup
-  ],
+  imports: [Railroad, Card, CdkDropListGroup, RCardAsc, RAltColour],
   templateUrl: './gameboard.html',
-  styleUrl: './gameboard.scss'
+  styleUrl: './gameboard.scss',
 })
 export class Gameboard implements OnInit {
-  
-  public startingCardMatrix : CardModel[][] = [
-    [],
-    [],
-    [],
-    [],
-    [],
-    [],
-  ]
+  public startingCardMatrix: CardModel[][] = [[], [], [], [], [], []];
 
   public deckOfCards: DeckModel;
 
@@ -33,8 +23,7 @@ export class Gameboard implements OnInit {
     this.populateStartingMatrix();
   }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   private populateStartingMatrix() {
     for (let i = 0; i < this.startingCardMatrix.length; i++) {
@@ -47,5 +36,4 @@ export class Gameboard implements OnInit {
       }
     }
   }
-
 }
