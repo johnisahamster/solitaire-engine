@@ -27,8 +27,11 @@ export class RAltSuit {
     targetElement: HTMLElement,
     draggedCards: CardModel[]
   ): boolean {
-    const topTarget = targetList[targetList.length - 1];
+    const topTarget =
+      targetList.length > 0 ? targetList[targetList.length - 1] : null;
     const bottomDragged = draggedCards[0];
-    return topTarget.getSuit() != bottomDragged.getSuit();
+    return topTarget
+      ? topTarget.getSuit() != bottomDragged.getSuit()
+      : bottomDragged.getNumber() == 13;
   }
 }

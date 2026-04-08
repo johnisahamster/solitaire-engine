@@ -14,7 +14,7 @@ import { RAltColour } from '../directives/railroad-predicates/ralt-colour/ralt-c
   styleUrl: './gameboard.scss',
 })
 export class Gameboard implements OnInit {
-  public startingCardMatrix: CardModel[][] = [[], [], [], [], [], []];
+  public startingCardMatrix: CardModel[][] = [[], [], [], [], [], [], []];
 
   public deckOfCards: DeckModel;
 
