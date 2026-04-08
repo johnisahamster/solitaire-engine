@@ -27,8 +27,11 @@ export class RCardAsc {
     targetElement: HTMLElement,
     draggedCards: CardModel[]
   ): boolean {
-    const topTarget = targetList[targetList.length - 1];
+    const topTarget =
+      targetList.length > 0 ? targetList[targetList.length - 1] : null;
     const bottomDragged = draggedCards[0];
-    return topTarget.getNumber() == bottomDragged.getNumber() + 1;
+    return topTarget
+      ? topTarget.getNumber() == bottomDragged.getNumber() + 1
+      : bottomDragged.getNumber() == 13;
   }
 }

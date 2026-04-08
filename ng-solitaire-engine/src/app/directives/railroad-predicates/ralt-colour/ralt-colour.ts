@@ -27,8 +27,11 @@ export class RAltColour {
     targetElement: HTMLElement,
     draggedCards: CardModel[]
   ): boolean {
-    const topTarget = targetList[targetList.length - 1];
+    const topTarget =
+      targetList.length > 0 ? targetList[targetList.length - 1] : null;
     const bottomDragged = draggedCards[0];
-    return topTarget.getColour() != bottomDragged.getColour();
+    return topTarget
+      ? topTarget.getColour() != bottomDragged.getColour()
+      : bottomDragged.getNumber() == 13;
   }
 }
