@@ -1,15 +1,22 @@
-import { AfterViewInit, Component, ElementRef, Input, OnChanges, OnInit, SimpleChanges, ViewChild } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  ElementRef,
+  Input,
+  OnChanges,
+  OnInit,
+  SimpleChanges,
+  ViewChild,
+} from '@angular/core';
 import { CardModel, CardSuit } from '../../../models/card/card-model';
 
 @Component({
   selector: 'se-card',
-  imports: [
-  ],
+  imports: [],
   templateUrl: './card.html',
-  styleUrl: './card.scss'
+  styleUrl: './card.scss',
 })
-export class Card implements OnInit, AfterViewInit{
-  
+export class Card implements OnInit, AfterViewInit {
   private model: CardModel = new CardModel();
 
   @Input() set cardmodel(value: CardModel) {
@@ -19,16 +26,13 @@ export class Card implements OnInit, AfterViewInit{
   @ViewChild('cardcanvas') cardcanvas!: ElementRef<HTMLCanvasElement>;
   private ctx!: CanvasRenderingContext2D;
 
-  constructor() {
-  }
+  constructor() {}
 
   ngOnInit(): void {
-    console.log(this.model);
+    //console.log(this.model);
   }
 
-  ngOnChanges(changes: SimpleChanges): void {
-    
-  }
+  ngOnChanges(changes: SimpleChanges): void {}
 
   ngAfterViewInit(): void {
     this.ctx = this.cardcanvas.nativeElement.getContext('2d')!;
@@ -38,27 +42,25 @@ export class Card implements OnInit, AfterViewInit{
   private drawCanvas() {
     if (this.model.isFaceDown()) {
       var grd = this.ctx.createLinearGradient(0, 0, 100, 100);
-      grd.addColorStop(0, "#550000");
-      grd.addColorStop(1, "#200000");
+      grd.addColorStop(0, '#550000');
+      grd.addColorStop(1, '#200000');
       this.ctx.fillStyle = grd;
-      this.ctx.fillRect(0,0,60,90);
-    }
-    else {
+      this.ctx.fillRect(0, 0, 60, 90);
+    } else {
       this.ctx.beginPath();
-      this.ctx.arc(30,45,15,0,2*Math.PI);
+      this.ctx.arc(30, 45, 15, 0, 2 * Math.PI);
       this.ctx.fillStyle = this.getColorByCardValue()!;
       this.ctx.fill();
       this.ctx.stroke();
-      this.ctx.font = "20px Arial";
-      this.ctx.fillStyle = "#000000";
+      this.ctx.font = '20px Arial';
+      this.ctx.fillStyle = '#000000';
       this.ctx.fillText(this.model.getNumber().toString(), 5, 20);
     }
-    
   }
 
-  private getColorByCardValue() : string {
+  private getColorByCardValue(): string {
     try {
-      console.log(this.model.getSuit());
+      //console.log(this.model.getSuit());
       switch (this.model.getSuit()) {
         case CardSuit.Diamonds:
           return '#cc7700';
@@ -68,11 +70,10 @@ export class Card implements OnInit, AfterViewInit{
           return '#ee0000';
         case CardSuit.Clubs:
           return '#000033';
-      }  
+      }
     } catch (error) {
       console.error(error);
-      return "ffffff";
+      return 'ffffff';
     }
-    
   }
 }
