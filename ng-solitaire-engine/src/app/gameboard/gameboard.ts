@@ -6,10 +6,11 @@ import { CardModel } from '../models/card/card-model';
 import { DeckModel } from '../models/deck/deck-model';
 import { RCardAsc } from '../directives/railroad-predicates/rcard-asc/rcard-asc';
 import { RAltColour } from '../directives/railroad-predicates/ralt-colour/ralt-colour';
+import { Marker } from '../components/markers/marker/marker'
 
 @Component({
   selector: 'se-gameboard',
-  imports: [Railroad, Card, CdkDropListGroup, RCardAsc, RAltColour],
+  imports: [Railroad, Card, CdkDropListGroup, RCardAsc, RAltColour, Marker],
   templateUrl: './gameboard.html',
   styleUrl: './gameboard.scss',
 })

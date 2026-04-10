@@ -4,17 +4,12 @@ import { Gameboard } from './gameboard/gameboard';
 
 @Component({
   selector: 'app-root',
-  imports: [
-    RouterOutlet,
-    Gameboard
-  ],
+  imports: [RouterOutlet, Gameboard],
   templateUrl: './app.html',
-  styleUrl: './app.scss'
+  styleUrl: './app.scss',
 })
 export class App {
-  constructor () {
-
-  }
+  constructor() {}
 
   protected title = 'ng-solitaire-engine';
 }
